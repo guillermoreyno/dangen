@@ -65,10 +65,11 @@
 
       # Mensaje recordatorio de Git para tu repositorio dangen
       echo -e "\n\e[1;34m💡 Recordatorio de Git (Respaldar configuraciones):\e[0m"
-      echo -e "   git add ."
-      echo -e "   git commit -m \"un mensaje corto de lo que cambiaste\""
-      echo -e "   git push\n"
-    '';
+      echo git add ~/nixos-config/home.nix
+      echo up
+      echo git add .
+      echo git commit -m "TEXTO CORTO QUE DIGA EL CAMBIO"
+      echo git push    '';
   };
 
   # 🚀 AUTOMATIZACIÓN DE INICIO DE APLICACIONES 🚀

@@ -4,15 +4,19 @@
 
   home.stateVersion = "24.11";
 
-home.packages = [
+  home.packages = [
     pkgs.git
   ];
 
-  # Configuración declarativa de Git con tus datos oficiales
+  # Configuración declarativa moderna de Git con tus datos oficiales
   programs.git = {
     enable = true;
-    userName = "WillyDoc";
-    userEmail = "guillermoreyno@institutoclaret.cl";
+    settings = {
+      user = {
+        name = "WillyDoc";
+        email = "guillermoreyno@institutoclaret.cl";
+      };
+    };
   };
 
   programs.home-manager.enable = true;

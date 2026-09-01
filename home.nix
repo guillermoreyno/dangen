@@ -55,13 +55,19 @@
     enable = true;
     shellAliases = {
       up = "nix flake update --flake path:/home/lab1/nixos-config && sudo nixos-rebuild switch --flake path:/home/lab1/nixos-config#dangen";
-      clima = "curl 'wttr.in/Temuco,Chile?m' && curl 'wttr.in/-38.6623998,-72.4802993?m'";
+      clima = "curl 'wttr.in/Temuco,Chile?m' && curl 'wttr.in/-38.6623998,-72.6373735'";
       f = "fastfetch";
-      # Alias corregido en minúscula
       acuario = "asciiquarium";
     };
     initExtra = ''
+      # Ejecuta tu diseño personalizado de Fastfetch
       fastfetch
+
+      # Mensaje recordatorio de Git para tu repositorio dangen
+      echo -e "\n\e[1;34m💡 Recordatorio de Git (Respaldar configuraciones):\e[0m"
+      echo -e "   git add ."
+      echo -e "   git commit -m \"un mensaje corto de lo que cambiaste\""
+      echo -e "   git push\n"
     '';
   };
 

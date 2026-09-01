@@ -134,26 +134,6 @@
     }
   '';
 
-  # 📊 CONFIGURACIÓN DECLARATIVA DE CAVA 📊
-  xdg.configFile."cava/config".text = ''
-    [general]
-    bars = 0
-    bar_width = 1
-    bar_spacing = 1
-
-    [output]
-    method = ncurses
-
-    [color]
-    gradient = 1
-    gradient_count = 5
-    gradient_color_1 = '#0B2C7A'
-    gradient_color_2 = '#1D51A8'
-    gradient_color_3 = '#3C6EB4'
-    gradient_color_4 = '#51A2DA'
-    gradient_color_5 = '#FFFFFF'
-  '';
-
   # Configuración declarativa de Weathr con 2 ubicaciones: Temuco y Mi Casa
   xdg.configFile."weathr/config.toml".text = ''
     [[locations]]
@@ -183,25 +163,35 @@
       ];
     };
     "org/gnome/desktop/interface" = {
+      font-name = "Monospace 10";
+      document-font-name = "Monospace 10";
       monospace-font-name = "Monospace 10";
+    };
+  };
+
+  # 📊 CONFIGURACIÓN DECLARATIVA DE CAVA (Módulo Oficial) 📊
+  programs.cava = {
+    enable = true;
+    settings = {
+      general = {
+        bars = 0;
+        bar_width = 1;
+        bar_spacing = 1;
+      };
+      output.method = "ncurses";
+      color = {
+        gradient = 1;
+        gradient_count = 5;
+        gradient_color_1 = "'#0B2C7A'"; # Tu azul oscuro original de base
+        gradient_color_2 = "'#1D51A8'";
+        gradient_color_3 = "'#3C6EB4'";
+        gradient_color_4 = "'#51A2DA'";
+        gradient_color_5 = "'#FFFFFF'"; # Tu blanco en los picos altos
+      };
     };
   };
 
   # Versión de compatibilidad de Home Manager (Obligatoria)
   home.stateVersion = "24.11";
- 
-# Configuración declarativa de Cava con gradiente azul y blanco
-  programs.cava = {
-    enable = true;
-    settings = {
-      general.output = "ncurses";
-      color = {
-        gradient = 1;
-        gradient_color_1 = "'#0000ff'"; # Azul puro/oscuro en la base
-        gradient_color_2 = "'#0077ff'"; # Azul claro al medio
-        gradient_color_3 = "'#00d4ff'"; # Cyan/celeste más arriba
-        gradient_color_4 = "'#ffffff'"; # Blanco en los picos más altos
-      };
-    };
-  };
 }
+

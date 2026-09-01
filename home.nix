@@ -154,15 +154,21 @@
     gradient_color_5 = '#FFFFFF'
   '';
 
-  # 🌤️ CONFIGURACIÓN DECLARATIVA DE WEATHR 🌤️
+  # Configuración declarativa de Weathr con 2 ubicaciones: Temuco y Mi Casa
   xdg.configFile."weathr/config.toml".text = ''
-    [location]
-    latitude = -38.660989
-    longitude = -72.482487
-    auto = false
-    hide = false
-    display = "city"
-    city = "Mi Casa"
+    [[locations]]
+    name = "Temuco"
+    lat = -38.5401
+    lon = -72.5904
+
+    [[locations]]
+    name = "Mi Casa"
+    lat = -38.6623998
+    lon = -72.6373735
+
+    [units]
+    temperature = "celsius"
+    speed = "kmh"
   '';
 
   # 🎨 CONFIGURACIÓN DE ENTORNO GNOME (DCONF) 🎨

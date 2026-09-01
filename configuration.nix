@@ -87,9 +87,6 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
     #  thunderbird
-	brave
-	keepassxc
-	materialgram
     ];
   };
 

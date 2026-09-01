@@ -1,0 +1,29 @@
+# --- Nix / NixOS Específico ---
+result
+result-*
+.direnv/
+.nix-mix/
+.nix-profile/
+profile.nix-profile
+
+# --- Secretos y Claves (¡Crítico!) ---
+# Si usas sops-nix o agenix, NO ignores tus archivos .yaml/.json cifrados, 
+# pero SÍ debemos ignorar las llaves privadas locales si las guardas aquí.
+*.key
+*.pem
+secrets.tar.gz
+.env
+.env.*
+
+# --- Archivos Temporales y del Sistema ---
+*~
+\.#*
+.DS_Store
+.cache/
+.pnpm-debug.log*
+
+# --- Respaldos automáticos de editores ---
+*.swp
+*.swo
+.vscode/
+.idea/

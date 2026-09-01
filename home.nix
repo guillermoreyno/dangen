@@ -182,5 +182,20 @@
   };
 
   # Versión de compatibilidad de Home Manager (Obligatoria)
-  home.stateVersion = "24.11"; 
+  home.stateVersion = "24.11";
+ 
+# Configuración declarativa de Cava con gradiente azul y blanco
+  programs.cava = {
+    enable = true;
+    settings = {
+      general.output = "ncurses";
+      color = {
+        gradient = 1;
+        gradient_color_1 = "'#0000ff'"; # Azul puro/oscuro en la base
+        gradient_color_2 = "'#0077ff'"; # Azul claro al medio
+        gradient_color_3 = "'#00d4ff'"; # Cyan/celeste más arriba
+        gradient_color_4 = "'#ffffff'"; # Blanco en los picos más altos
+      };
+    };
+  };
 }

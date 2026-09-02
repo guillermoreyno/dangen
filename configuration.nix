@@ -113,4 +113,9 @@
         io.github.kolunmi.Bazaar
     '';
   };
+  # Eliminar aplicaciones preinstaladas de GNOME (Adiós Tienda de Software)
+  environment.gnome.excludePackages = with pkgs; [
+    gnome-software # Esta línea borra la tienda de GNOME por completo
+  ];
+
 }

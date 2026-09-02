@@ -115,9 +115,33 @@
 	io.github.kukuruzka165.materialgram    
     '';
   };
-  # Eliminar aplicaciones preinstaladas de GNOME (Adiós Tienda de Software)
+  # Eliminar aplicaciones preinstaladas de GNOME (Lista Corregida)
   environment.gnome.excludePackages = with pkgs; [
-    gnome-software # Esta línea borra la tienda de GNOME por completo
+    gnome-software         # Tienda de Software
+    gnome-console          # Consola vieja (Mantenemos tu terminal Ptyxis)
+    gnome-contacts         # Contactos
+    gnome-weather          # Meteorología
+    gnome-clocks           # Relojes
+    gnome-maps             # Mapas
+    simple-scan            # Escáner de documentos
+    snapshot               # Cámara
+    gnome-calculator       # Calculadora
+    gnome-characters       # Caracteres
+    gnome-tour             # Tour de GNOME
+    yelp                   # Ayuda
+    epiphany               # Web
+    gnome-calendar         # Calendario
+    gnome-text-editor      # Editor de textos stock
+    gnome-connections      # Conexiones
+    gnome-system-monitor   # Monitor del sistema
+    baobab                 # Analizador de uso de disco
+    gnome-disk-utility     # Discos
+    
+    # 🚫 ELIMINAR EL NUEVO REPRODUCTOR DE VÍDEO Y LA IMPRESIÓN
+    totem                  # Filtro base de vídeos antiguo
+    showtime               # El NUEVO Reproductor de vídeo real de GNOME
+    system-config-printer  # Administrar impresión
+    
+    # NOTA: Dejamos fuera a 'decibels' y 'gnome-music' para que tu reproductor de SONIDO se quede.
   ];
-
 }

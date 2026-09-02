@@ -110,7 +110,9 @@
 
       # 2. LISTA DE FLATPAKS (Agrega aquí tus programas separados por un espacio)
       flatpak install flathub -y \
-        org.onlyoffice.desktopeditors
+        org.onlyoffice.desktopeditors \
+	org.keepassxc.KeePassXC \
+	io.github.kukuruzka165.materialgram    
     '';
   };
   # Eliminar aplicaciones preinstaladas de GNOME (Adiós Tienda de Software)

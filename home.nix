@@ -6,7 +6,7 @@
     pkgs.git                        # Herramienta de control de versiones
     pkgs.brave-origin               # Versión de Brave limpia (sin Bloatware/AI/Wallet)
     pkgs.keepassxc                  # Gestor de contraseñas local y seguro
-    pkgs.onlyoffice-desktopeditors   # Suite ofimática compatible con Office
+   # pkgs.onlyoffice-desktopeditors   # Suite ofimática compatible con Office
     pkgs.proton-authenticator       # Generador de códigos 2FA de Proton
     pkgs.materialgram               # Cliente alternativo de Telegram
     pkgs.ptyxis                     # Tu terminal predeterminada

@@ -110,7 +110,7 @@
 
       # 2. LISTA DE FLATPAKS (Agrega aquí tus programas separados por un espacio)
       flatpak install flathub -y \
-        io.github.kolunmi.Bazaar
+        org.onlyoffice.desktopeditors
     '';
   };
   # Eliminar aplicaciones preinstaladas de GNOME (Adiós Tienda de Software)

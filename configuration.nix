@@ -95,17 +95,22 @@
   # Estado de compatibilidad del sistema
   system.stateVersion = "26.05";
 
-  # Configuración totalmente declarativa de Flatpaks y Tienda Bazaar
-  services.flatpak = {
-    enable = true;
-    remotes = [
-      {
-        name = "flathub";
-        location = "https://flathub.org";
-      }
-    ];
-    packages = [
-      "io.github.kolunmi.Bazaar"
-    ];
+  # Habilitar el motor nativo de Flatpak
+  services.flatpak.enable = true;
+
+  # Automatización nativa para Flathub y tus Flatpaks (Bazaar + Futuros programas)
+  systemd.services.flatpak-managed-apps = {
+    wantedBy = [ "multi-user.target" ];
+    after = [ "network-online.target" ];
+    wants = [ "network-online.target" ];
+    path = [ pkgs.flatpak ];
+    script = ''
+      # 1. Registrar Flathub de forma correcta
+      flatpak remote-add --if-not-exists flathub https://flathub.org
+
+      # 2. LISTA DE FLATPAKS (Agrega aquí tus programas separados por un espacio)
+      flatpak install flathub -y \
+        io.github.kolunmi.Bazaar
+    '';
   };
 }

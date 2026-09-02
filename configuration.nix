@@ -112,7 +112,9 @@
       flatpak install flathub -y \
         org.onlyoffice.desktopeditors \
 	org.keepassxc.KeePassXC \
-	io.github.kukuruzka165.materialgram    
+	org.gnome.Calculator \
+	io.github.kukuruzka165.materialgram \
+	org.gnome.Showtime    
     '';
   };
   # Eliminar aplicaciones preinstaladas de GNOME (Lista Corregida)

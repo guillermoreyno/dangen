@@ -54,7 +54,7 @@
   programs.bash = {
     enable = true;
     shellAliases = {
-      up = "nix flake update --flake path:/home/lab1/nixos-config && sudo nixos-rebuild switch --flake path:/home/lab1/nixos-config#dangen";
+      up = "nix flake update --flake path:/home/lab1/nixos-config && sudo nixos-rebuild switch --flake path:/home/lab1/nixos-config#dangen && flatpak update -y";
       clima = "curl 'wttr.in/Temuco,Chile?m' && curl 'wttr.in/-38.6623998,-72.6373735'";
       f = "fastfetch";
       acuario = "asciiquarium";
@@ -145,8 +145,7 @@
     [[locations]]
     name = "Mi Casa"
     lat = -38.6623998
-    lon = -72.6373735
-
+    lon = -72.4825090
     [units]
     temperature = "celsius"
     speed = "kmh"

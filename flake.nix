@@ -8,13 +8,21 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # 1. Agregamos el repositorio oficial del módulo declarativo de Flatpak
+    nix-flatpak.url = "github:gmodena/nix-flatpak";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }: {
+  # 2. Pasamos 'nix-flatpak' como argumento en los outputs
+  outputs = { self, nixpkgs, home-manager, nix-flatpak, ... }: {
     nixosConfigurations.dangen = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         ./configuration.nix
+        
+        # 3. Importamos el módulo de Flatpak a nivel de sistema operativo
+        nix-flatpak.nixosModules.nix-flatpak
+
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;

@@ -54,7 +54,7 @@
   programs.bash = {
     enable = true;
     shellAliases = {
-      up = "nix flake update --flake path:/home/lab1/nixos-config && sudo nixos-rebuild switch --flake path:/home/lab1/nixos-config#dangen && sudo systemctl restart flatpak-managed-apps.service && flatpak update --system -y";
+      up = "nix flake update --flake path:/home/lab1/nixos-config && sudo nixos-rebuild switch --flake path:/home/lab1/nixos-config#dangen && sudo systemctl restart flatpak-managed-install.service && echo '=== Mostrando progreso de Flatpak ===' && journalctl -u flatpak-managed-install.service -f --until='now' & pid=$! && while systemctl is-active --quiet flatpak-managed-install.service; do sleep 1; done && kill $pid 2>/dev/null && echo '=== Procesos de Flatpak finalizados ==='";
       clima = "curl 'wttr.in/Temuco,Chile?m' && curl 'wttr.in/-38.6623998,-72.6373735'";
       f = "fastfetch";
       acuario = "asciiquarium";

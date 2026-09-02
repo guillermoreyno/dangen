@@ -12,14 +12,14 @@
   # Habilitar systemd en el arranque (Requerido para TPM2)
   boot.initrd.systemd.enable = true;
 
-  # Configuración declarativa de discos cifrados con soporte TPM2
+# Configuración declarativa de discos cifrados con soporte TPM2
   boot.initrd.luks.devices = {
-    "luks-60c879d1-901a-40f0-8b37-602e0bebcb43" = {
-      device = "/dev/disk/by-uuid/60c879d1-901a-40f0-8b37-602e0bebcb43";
+    "luks-d0707379-a68e-4599-97d0-3abd720c9f30" = {
+      device = "/dev/disk/by-uuid/d0707379-a68e-4599-97d0-3abd720c9f30";
       crypttabExtraOpts = [ "tpm2-device=auto" ];
     };
-    "luks-289e3cd7-c9cb-454f-8ca8-b74bc13ffd15" = {
-      device = "/dev/disk/by-uuid/289e3cd7-c9cb-454f-8ca8-b74bc13ffd15";
+    "luks-59ce3ec8-93d8-49e2-8d8f-ca31dff4cd1a" = {
+      device = "/dev/disk/by-uuid/59ce3ec8-93d8-49e2-8d8f-ca31dff4cd1a";
       crypttabExtraOpts = [ "tpm2-device=auto" ];
     };
   };
@@ -95,28 +95,17 @@
   # Estado de compatibilidad del sistema
   system.stateVersion = "26.05";
 
-  # Habilitar el motor nativo de Flatpak
+  # Habilitar soporte Flatpak nativo
   services.flatpak.enable = true;
 
-  # Automatización nativa para Flathub y tus Flatpaks (Bazaar + Futuros programas)
-  systemd.services.flatpak-managed-apps = {
-    wantedBy = [ "multi-user.target" ];
-    after = [ "network-online.target" ];
-    wants = [ "network-online.target" ];
-    path = [ pkgs.flatpak ];
-    script = ''
-      # 1. Registrar Flathub de forma correcta
-      flatpak remote-add --if-not-exists flathub https://flathub.org
-
-      # 2. LISTA DE FLATPAKS (Agrega aquí tus programas separados por un espacio)
-      flatpak install flathub -y \
-        org.onlyoffice.desktopeditors \
-	org.keepassxc.KeePassXC \
-	org.gnome.Calculator \
-	io.github.kukuruzka165.materialgram \
-	org.gnome.Showtime    
-    '';
-  };
+  # Formato correcto sin prefijos "flathub:" para nix-flatpak en NixOS
+  services.flatpak.packages = [
+    "org.onlyoffice.desktopeditors"
+    "org.keepassxc.KeePassXC"
+    "org.gnome.Calculator"
+    "io.github.kukuruzka165.materialgram"
+    "org.gnome.Showtime"
+  ];
   # Eliminar aplicaciones preinstaladas de GNOME (Lista Corregida)
   environment.gnome.excludePackages = with pkgs; [
     gnome-software         # Tienda de Software

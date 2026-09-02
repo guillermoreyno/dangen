@@ -54,22 +54,34 @@
   programs.bash = {
     enable = true;
     shellAliases = {
-      up = "nix flake update --flake path:/home/lab1/nixos-config && sudo nixos-rebuild switch --flake path:/home/lab1/nixos-config#dangen && sudo systemctl restart flatpak-managed-install.service && echo '=== Mostrando progreso de Flatpak ===' && journalctl -u flatpak-managed-install.service -f --until='now' & pid=$! && while systemctl is-active --quiet flatpak-managed-install.service; do sleep 1; done && kill $pid 2>/dev/null && echo '=== Procesos de Flatpak finalizados ==='";
       clima = "curl 'wttr.in/Temuco,Chile?m' && curl 'wttr.in/-38.6623998,-72.6373735'";
       f = "fastfetch";
       acuario = "asciiquarium";
     };
-    initExtra = ''
-      # Ejecuta tu diseño personalizado de Fastfetch
+	initExtra = ''
+      function sys-update {
+        local flake_path="path:/home/lab1/nixos-config"
+        
+        echo "Updating flake..."
+        nix flake update --flake "$flake_path" && \
+        echo "Rebuilding NixOS..." && \
+        sudo nixos-rebuild switch --flake "$flake_path#dangen" && \
+        echo "Restarting Flatpak service..." && \
+        sudo systemctl restart flatpak-managed-install.service
+      }
+      alias up="sys-update"
+
+      # Ejecuta tu diseño personalizado de Fastfetch al abrir la terminal
       fastfetch
 
       # Mensaje recordatorio de Git para tu repositorio dangen
       echo -e "\n\e[1;34m💡 Recordatorio de Git (Respaldar configuraciones):\e[0m"
-      echo git add ~/nixos-config/home.nix
-      echo up
-      echo git add .
-      echo git commit -m "TEXTO CORTO QUE DIGA EL CAMBIO"
-      echo git push    '';
+      echo "git add ~/nixos-config/home.nix"
+      echo "up"
+      echo "git add ."
+      echo "git commit -m \"TEXTO CORTO QUE DIGA EL CAMBIO\""
+      echo "git push"
+    '';
   };
 
   # 🚀 AUTOMATIZACIÓN DE INICIO DE APLICACIONES 🚀

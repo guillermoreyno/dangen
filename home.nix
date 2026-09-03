@@ -24,6 +24,7 @@
     pkgs.curl                       # Transferencia de datos por red
     pkgs.weathr                     # Aplicación de clima CLI en Rust
     pkgs.asciiquarium               # Acuario de animación ASCII en la terminal
+    pkgs.btop	
   ];
 
   # Configuración del entorno y terminal predeterminada

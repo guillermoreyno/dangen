@@ -5,29 +5,26 @@
     ./hardware-configuration.nix
   ];
 
-  # Cargador de arranque
+ # =========================================================================
+  # CONFIGURACIÓN DEL ARRANQUE (BOOT) Y SOPORTE UNIVERSAL TPM2
+  # =========================================================================
+
+  # 1. Habilita el menú de arranque moderno (systemd-boot) en tu placa madre
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Habilitar systemd en el arranque (Requerido para TPM2)
+  # 2. Levanta los motores de systemd en la fase pre-arranque (Initrd)
+  # Esto es OBLIGATORIO para que el sistema pueda comunicarse con el chip TPM2
   boot.initrd.systemd.enable = true;
 
-# Configuración declarativa de discos cifrados con soporte TPM2
-  boot.initrd.luks.devices = {
-    "luks-d0707379-a68e-4599-97d0-3abd720c9f30" = {
-      device = "/dev/disk/by-uuid/d0707379-a68e-4599-97d0-3abd720c9f30";
-      crypttabExtraOpts = [ "tpm2-device=auto" ];
-    };
-    "luks-59ce3ec8-93d8-49e2-8d8f-ca31dff4cd1a" = {
-      device = "/dev/disk/by-uuid/59ce3ec8-93d8-49e2-8d8f-ca31dff4cd1a";
-      crypttabExtraOpts = [ "tpm2-device=auto" ];
-    };
-  };
+  # 3. Le ordena a systemd que intente desbloquear automáticamente cualquier
+  # dispositivo cifrado (LUKS) usando el chip TPM2 si encuentra una llave válida
+  security.tpm2.enable = true;
 
-  # Kernel más reciente
+  # 4. Actualiza el núcleo del sistema a la versión de Linux estable más reciente
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  # Red e Identidad
+  # 5. Define la identidad de la máquina y activa la gestión de internet
   networking.hostName = "dangen";
   networking.networkmanager.enable = true;
 

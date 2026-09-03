@@ -129,33 +129,93 @@ xdg.configFile."autostart/ch.threema.threema-desktop.desktop".text = ''
   '';
 
 
-  # ⚙️ CONFIGURACIÓN DECLARATIVA DE FASTFETCH ⚙️
+# ⚙️ CONFIGURACIÓN DECLARATIVA DE FASTFETCH (NixOS Style) ⚙️
   xdg.configFile."fastfetch/config.jsonc".text = ''
     {
-      "$schema": "https://github.com",
-      "logo": { "padding": { "top": 1, "left": 2 } },
-      "display": { "separator": "  \u001b[38;5;250m➡️  \u001b[0m" },
+      "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+      "display": {
+        "separator": " ➜ "
+      },
       "modules": [
         "title",
-        { "type": "custom", "format": "\u001b[32m╠══ S I S T E M A ══╣═════════════════════════════════════════\u001b[0m" },
-        { "type": "os", "key": "  🐧  \u001b[33mOS\u001b[0m     ", "format": "{3}" },
-        { "type": "kernel",   "key": "  🎛   \u001b[33mKern\u001b[0m   " },
-        { "type": "uptime",   "key": "  ⏱️   \u001b[33mUp\u001b[0m     " },
-        { "type": "packages", "key": "  📦  \u001b[33mPkgs\u001b[0m   ", "flatpak": true, "snap": true },
-        { "type": "shell",    "key": "  🐚  \u001b[33mSh\u001b[0m     " },
-        { "type": "custom", "format": "\u001b[38;5;208m╠══ E N T O R N O ══╣═════════════════════════════════════════\u001b[0m" },
-        { "type": "de",       "key": "  🖥   \u001b[33mDE\u001b[0m     " },
-        { "type": "wm",       "key": "  🪟  \u001b[33mWM\u001b[0m     " },
-        { "type": "theme",    "key": "  🎨  \u001b[33mTema\u001b[0m   " },
-        { "type": "icons",    "key": "  🖼   \u001b[33mIcon\u001b[0m   " },
-        { "type": "terminal", "key": "  📟  \u001b[33mTerm\u001b[0m   " },
-        { "type": "custom", "format": "\u001b[37m╠══ H A R D W A R E ══╣═══════════════════════════════════════\u001b[0m" },
-        { "type": "host",     "key": "  💻  \u001b[33mHost\u001b[0m   " },
-        { "type": "cpu", "key": "  🧠  \u001b[33mCPU\u001b[0m    ", "showPeCoreCount": false, "temp": false },
-        { "type": "gpu", "key": "  🎮  \u001b[33mGPU\u001b[0m    ", "format": "{1} {2}", "hideType": "integrated" },
-        { "type": "memory",   "key": "  📟  \u001b[33mRAM\u001b[0m    " },
-        { "type": "disk",     "key": "  💽  \u001b[33mDisk\u001b[0m   " },
-        { "type": "custom", "format": "\u001b[38;5;242m════════════════════════════════════════════════════════════\u001b[0m" },
+        {
+          "type": "custom",
+          "format": "\u001b[38;5;51m┌─────────────────────────────────────────────────────────────┐\u001b[0m"
+        },
+        {
+          "type": "os",
+          "key": "\u001b[38;5;51m│\u001b[0m 🐧 OS",
+          "format": "{3}"
+        },
+        {
+          "type": "host",
+          "key": "\u001b[38;5;51m│\u001b[0m 💻 Host"
+        },
+        {
+          "type": "kernel",
+          "key": "\u001b[38;5;51m│\u001b[0m 🎛️ Kernel"
+        },
+        {
+          "type": "uptime",
+          "key": "\u001b[38;5;51m│\u001b[0m ⏱️ Uptime"
+        },
+        {
+          "type": "packages",
+          "key": "\u001b[38;5;51m│\u001b[0m 📦 Pkgs",
+          "flatpak": true
+        },
+        {
+          "type": "shell",
+          "key": "\u001b[38;5;51m│\u001b[0m 🐚 Shell"
+        },
+        {
+          "type": "de",
+          "key": "\u001b[38;5;51m│\u001b[0m 🖥️ DE"
+        },
+        {
+          "type": "wm",
+          "key": "\u001b[38;5;51m│\u001b[0m 🪟 WM"
+        },
+        {
+          "type": "terminal",
+          "key": "\u001b[38;5;51m│\u001b[0m 📟 Term"
+        },
+        {
+          "type": "display",
+          "key": "\u001b[38;5;51m│\u001b[0m 📺 Res"
+        },
+        {
+          "type": "cpu",
+          "key": "\u001b[38;5;51m│\u001b[0m 🧠 CPU",
+          "showPeCoreCount": false,
+          "temp": false
+        },
+        {
+          "type": "gpu",
+          "key": "\u001b[38;5;51m│\u001b[0m 🎮 GPU",
+          "format": "{1} {2}"
+        },
+        {
+          "type": "memory",
+          "key": "\u001b[38;5;51m│\u001b[0m 🧪 RAM"
+        },
+        {
+          "type": "swap",
+          "key": "\u001b[38;5;51m│\u001b[0m 🔄 Swap"
+        },
+        {
+          "type": "disk",
+          "key": "\u001b[38;5;51m│\u001b[0m 💽 Disk"
+        },
+        {
+          "type": "localip",
+          "key": "\u001b[38;5;51m│\u001b[0m 🌐 IP"
+        },
+        {
+          "type": "custom",
+          "format": "\u001b[38;5;51m└─────────────────────────────────────────────────────────────┘\u001b[0m"
+        },
+        "break",
         "colors"
       ]
     }

@@ -92,17 +92,32 @@
   # Estado de compatibilidad del sistema
   system.stateVersion = "26.05";
 
-  # Habilitar soporte Flatpak nativo
-  services.flatpak.enable = true;
+  # Configuración declarativa con nix-flatpak
+services.flatpak = {
+    enable = true;
+    update.auto.enable = true;
 
-  # Formato correcto sin prefijos "flathub:" para nix-flatpak en NixOS
-  services.flatpak.packages = [
-    "org.onlyoffice.desktopeditors"
-    "org.keepassxc.KeePassXC"
-    "org.gnome.Calculator"
-    "io.github.kukuruzka165.materialgram"
-    "org.gnome.Showtime"
-  ];
+    # Evita que nix-flatpak borre o desconfigure los remotos/apps
+    # que instalas manualmente fuera de Nix (como Threema Beta)
+    uninstallUnmanaged = false;
+
+    remotes = [
+      {
+        name = "flathub";
+        location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+      }
+    ];
+
+    packages = [
+      { appId = "org.onlyoffice.desktopeditors"; origin = "flathub"; }
+      { appId = "org.keepassxc.KeePassXC"; origin = "flathub"; }
+      { appId = "org.gnome.Calculator"; origin = "flathub"; }
+      { appId = "io.github.kukuruzka165.materialgram"; origin = "flathub"; }
+      { appId = "org.gnome.Showtime"; origin = "flathub"; }
+      { appId = "net.nokyan.Resources"; origin = "flathub"; }
+    ];
+  };
+
   # Eliminar aplicaciones preinstaladas de GNOME (Lista Corregida)
   environment.gnome.excludePackages = with pkgs; [
     gnome-software         # Tienda de Software

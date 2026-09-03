@@ -14,20 +14,24 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/mapper/luks-95964c02-5a98-4a6d-ba17-c1a1309ebcf2";
+    { device = "/dev/mapper/luks-c34e61a8-df13-4daa-9c65-d52abd216a27";
       fsType = "ext4";
     };
 
-  boot.initrd.luks.devices."luks-95964c02-5a98-4a6d-ba17-c1a1309ebcf2".device = "/dev/disk/by-uuid/95964c02-5a98-4a6d-ba17-c1a1309ebcf2";
+  boot.initrd.luks.devices."luks-c34e61a8-df13-4daa-9c65-d52abd216a27".device = "/dev/disk/by-uuid/c34e61a8-df13-4daa-9c65-d52abd216a27";
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/F66A-EF56";
+    { device = "/dev/disk/by-uuid/0466-A4B7";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
-  # Se vació esta lista para eliminar el UUID inexistente que retrasaba el inicio
-  swapDevices = [ ];
+  swapDevices = [
+    { 
+      device = "/dev/mapper/luks-1b15fc4d-de1f-496a-b230-17459db44813"; 
+      options = [ "nofail" "x-systemd.device-timeout=1s" ];
+    }
+  ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

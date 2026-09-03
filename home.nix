@@ -105,11 +105,11 @@
     X-GNOME-Autostart-enabled=true
   '';
 
-  xdg.configFile."autostart/materialgram.desktop".text = ''
+xdg.configFile."autostart/materialgram.desktop".text = ''
     [Desktop Entry]
     Type=Application
     Name=Materialgram
-    Exec=materialgram
+    Exec=flatpak run io.github.kukuruku_co.materialgram
     Hidden=false
     NoDisplay=false
     X-GNOME-Autostart-enabled=true

@@ -61,13 +61,15 @@
 	initExtra = ''
       function sys-update {
         local flake_path="path:/home/lab1/nixos-config"
-        
+
         echo "Updating flake..."
         nix flake update --flake "$flake_path" && \
         echo "Rebuilding NixOS..." && \
         sudo nixos-rebuild switch --flake "$flake_path#dangen" && \
         echo "Restarting Flatpak service..." && \
-        sudo systemctl restart flatpak-managed-install.service
+        sudo systemctl restart flatpak-managed-install.service && \
+        echo "Updating Flatpaks..." && \
+        flatpak update -y
       }
       alias up="sys-update"
 
@@ -109,11 +111,23 @@ xdg.configFile."autostart/materialgram.desktop".text = ''
     [Desktop Entry]
     Type=Application
     Name=Materialgram
-    Exec=flatpak run io.github.kukuruku_co.materialgram
+    Exec=flatpak run io.github.kukuruzka165.materialgram
     Hidden=false
     NoDisplay=false
     X-GNOME-Autostart-enabled=true
   '';
+
+xdg.configFile."autostart/ch.threema.threema-desktop.desktop".text = ''
+    [Desktop Entry]
+    Type=Application
+    Name=Threema
+    Exec=flatpak run ch.threema.threema-desktop
+    Icon=ch.threema.threema-desktop
+    Terminal=false
+    Categories=Network;InstantMessaging;
+    X-GNOME-Autostart-enabled=true
+  '';
+
 
   # ⚙️ CONFIGURACIÓN DECLARATIVA DE FASTFETCH ⚙️
   xdg.configFile."fastfetch/config.jsonc".text = ''

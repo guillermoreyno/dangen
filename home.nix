@@ -10,6 +10,7 @@
     pkgs.proton-authenticator       # Generador de códigos 2FA de Proton
    # pkgs.materialgram               # Cliente alternativo de Telegram
     pkgs.ptyxis                     # Tu terminal predeterminada
+    pkgs.handbrake
 
     # Extensiones de GNOME y herramientas de gestión
     pkgs.gnome-extensions-cli       # Permite administrar extensiones por terminal

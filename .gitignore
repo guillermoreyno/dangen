@@ -27,3 +27,4 @@ secrets.tar.gz
 *.swo
 .vscode/
 .idea/
+hardware-configuration.nix

@@ -18,8 +18,11 @@
     nixosConfigurations.dangen = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
+        # Se cambió a ruta relativa (con el punto "./") para cumplir con las reglas de Git y Flakes
+        ./hardware-configuration.nix
+
         ./configuration.nix
-        
+
         # 3. Importamos el módulo de Flatpak a nivel de sistema operativo
         nix-flatpak.nixosModules.nix-flatpak
 
@@ -33,4 +36,3 @@
     };
   };
 }
-

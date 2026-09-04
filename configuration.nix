@@ -79,7 +79,6 @@
   programs.firefox.enable = true;
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    pkgs.proton-vpn
   ];
   # Habilitar zram para optimización de memoria swap en RAM
   zramSwap.enable = true;
@@ -115,6 +114,7 @@ services.flatpak = {
       { appId = "io.github.kukuruzka165.materialgram"; origin = "flathub"; }
       { appId = "org.gnome.Showtime"; origin = "flathub"; }
       { appId = "net.nokyan.Resources"; origin = "flathub"; }
+      { appId = "com.protonvpn.www"; origin = "flathub"; }
     ];
   };
 
